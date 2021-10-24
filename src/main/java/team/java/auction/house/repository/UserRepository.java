@@ -1,6 +1,8 @@
 package team.java.auction.house.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import team.java.auction.house.domain.UserEntity;
 
@@ -18,5 +20,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Override
     Optional<UserEntity> findById(Long id);
 
-    Optional<UserEntity> findByLogin(String login);
+    @Query(nativeQuery = true)
+    Optional<UserEntity> findByLogin(@Param("login") String login);
 }

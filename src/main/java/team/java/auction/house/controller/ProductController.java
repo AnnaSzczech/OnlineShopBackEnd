@@ -37,7 +37,7 @@ public class ProductController extends BasicResponse {
     }
 
     @PostMapping
-    public Response<ProductDTO> createProduct(@Query ProductRequest productRequest) {
+    public Response<ProductDTO> createProduct(@RequestBody ProductRequest productRequest) {
         String date = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM));
         if (productRequest.getCategoryProducer() == null || productRequest.getProductName() == null || productRequest.getNetPrice() == null) {
             return createErrorResponse(new ErrorMessage(401, "Brak wymaganych pól!", date));
